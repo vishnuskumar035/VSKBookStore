@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin | VSK BookStore</title>
+		<link rel="stylesheet" href="{% static 'assets/css/adminStyle.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/detailStyle.css' %}" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous"
+		/>
+		<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+		/>
+	</head>
+	<body>
+		<div class="wrapper">
+			<aside id="sidebar">
+				<div class="d-flex">
+					<button id="toggle-btn" type="button">
+						<i class="lni lni-grid-alt"></i>
+					</button>
+					<div class="sidebar-logo">
+						<a href="{% url 'adminlist' %}">VSK BookStore</a>
+					</div>
+				</div>
+				<ul class="sidebar-nav">
+					<li class="sidebar-item">
+						<a href="{% url 'all_users' %}" class="sidebar-link">
+							<i class="lni lni-user"></i>
+							<span>All Users</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{% url 'all_orders' %}" class="sidebar-link">
+							<i class="lni lni-agenda"></i>
+							<span>All Orders</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a
+							href="#"
+							class="sidebar-link has-dropdown collapsed"
+							data-bs-toggle="collapse"
+							data-bs-target="#auth"
+							aria-expanded="false"
+							aria-controls="auth"
+						>
+							<i class="lni lni-protection"></i><span>Auth</span></a
+						>
+						<ul
+							id="auth"
+							class="sidebar-dropdown list-unstyled collapse"
+							data-bs-parent="#sidebar"
+						>
+							<li class="sidebar-item">
+								<a href="{% url 'loginadmin' %}" class="sidebar-link">
+									<i class="lni lni-enter"></i>
+									Login
+								</a>
+							</li>
+							<li class="sidebar-item">
+								<a href="{% url 'register' %}" class="sidebar-link">
+									<i class="lni lni-clipboard"></i>
+									Register
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="sidebar-item">
+						<a
+							href="#"
+							class="sidebar-link has-dropdown collapsed"
+							data-bs-toggle="collapse"
+							data-bs-target="#multi"
+							aria-expanded="false"
+							aria-controls="multi"
+						>
+							<i class="lni lni-layout"></i>
+							<span>Create</span>
+						</a>
+						<ul
+							id="multi"
+							class="sidebar-dropdown list-unstyled collapse"
+							data-bs-parent="#sidebar"
+						>
+							<a
+								href="#"
+								class="sidebar-link collapsed"
+								data-bs-toggle="collapse"
+								data-bs-target="#multi-two"
+								aria-expanded="false"
+								aria-controls="multi-two"
+							>
+								Book & Genre
+							</a>
+							<ul
+								id="multi-two"
+								class="sidebar-dropdown list-unstyled collapse"
+							>
+								<li class="sidebar-item">
+									<a href="{% url 'create' %}" class="sidebar-link"
+										>Create Book</a
+									>
+								</li>
+								<li class="sidebar-item">
+									<a href="{% url 'genre' %}" class="sidebar-link"
+										>Create Genre</a
+									>
+								</li>
+							</ul>
+						</ul>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">
+							<i class="lni lni-popup"></i>
+							<span>Notification</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">
+							<i class="lni lni-cog"></i>
+							<span>Settings</span>
+						</a>
+					</li>
+				</ul>
+				<div class="sidebar-footer">
+					<a href="{% url 'logout' %}" class="sidebar-link">
+						<i class="lni lni-exit"></i>
+						<span>Logout</span>
+					</a>
+				</div>
+			</aside>
+			<div class="main">
+				<nav class="navbar navbar-expand px-4 py-3">
+					<form
+						action="{% url 'search' %}"
+						class="d-none d-sm-inline-block"
+						method="GET"
+					>
+						<div class="input-group input-group-navbar">
+							<input
+								type="text"
+								name="q"
+								class="form-control border-0 rounded-0"
+								placeholder="Search"
+							/>
+							<button class="btn border-0 rounded-0" type="button">
+								<i class="lni lni-search-alt"></i>
+							</button>
+						</div>
+					</form>
+					<div class="navbar-collapse collapse">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item fs-5 ms-5">
+								<a
+									class="text-light btn btn-dark"
+									aria-current="page"
+									href="{% url 'create' %}"
+									>Create Book</a
+								>
+							</li>
+							<li class="nav-item fs-5 ms-3">
+								<a class="text-light btn btn-dark" href="{% url 'adminlist' %}"
+									>List Books</a
+								>
+							</li>
+							<li class="nav-item fs-5 ms-3">
+								<a class="text-light btn btn-dark" href="{% url 'genre' %}"
+									>Create Genre</a
+								>
+							</li>
+						</ul>
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item dropdown">
+								<a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown">
+									<img
+										src="{% static 'assets/img/account.png' %}"
+										class="avatar img-fluid"
+										alt="User Image"
+									/>
+									{{ request.session.username }}
+								</a>
+								<div class="dropdown-menu dropdown-menu-end rounded">
+									<a href="#" class="dropdown-item">
+										<i class="lni lni-timer"></i>
+										<span>Analytics</span>
+									</a>
+									<a href="#" class="dropdown-item">
+										<i class="lni lni-cog"></i>
+										<span>Settings</span>
+									</a>
+									<div class="dropdown-divider"></div>
+									<a href="#" class="dropdown-item">
+										<i class="lni lni-question-circle"></i>
+										<span>Analytics</span>
+									</a>
+									<a href="{% url 'logout' %}" class="dropdown-item">
+										<i class="lni lni-exit"></i>
+										<span>Logout</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<main class="content px-3 py-4">
+					<div class="container-fluid">
+						<div class="mb-3">{% block content %} {% endblock %}</div>
+					</div>
+				</main>
+				<footer class="footer">
+					<div class="container-fluid">
+						<div class="row text-body-secondary">
+							<div class="col-6 text-start">
+								<a href="#" class="text-body-secondary">
+									<strong
+										>Copyright &copy; 2024, VSK BookStore. All rights
+										reserved</strong
+									>
+								</a>
+							</div>
+							<div class="col-6 text-end text-body-secondary d-none d-md-block">
+								<ul class="list-inline mb-0">
+									<li class="list-inline-item">
+										<a href="#" class="text-body-secondary">Contact</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="#" class="text-body-secondary">About Us</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="#" class="text-body-secondary"
+											>Terms & Conditions</a
+										>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<script src="{% static 'assets/js/adminScript.js' %}"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>

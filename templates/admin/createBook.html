@@ -1,0 +1,167 @@
+{% extends 'admin/admin1.html' %} {% load static %} {% block content %}
+<h1 class="text-center">Create Book</h1>
+<hr />
+<div class="container-fluid">
+	<div class="d-grid gap-2 mt-5 d-md-flex justify-content-md-end">
+		<a
+			href="{% url 'adminlist' %}"
+			class="btn btn-primary btn-lg me-md-2"
+			type="button"
+			>Book Lists</a
+		>
+		<a
+			href="{% url 'genre' %}"
+			class="btn btn-info btn-lg me-md-2"
+			type="button"
+			>Create Genre</a
+		>
+	</div>
+	<form action="" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="container">
+			<div class="row mb-3 mt-5">
+				<label for="bookName" class="col-sm-2 col-form-label">Book Name:</label>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="title"
+						id="bookName"
+						placeholder="Enter the Book Name"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="bookAuthor" class="col-sm-2 col-form-label">Author:</label>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="author"
+						id="bookAuthor"
+						placeholder="Enter the Author of Book"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="bookPrice" class="col-sm-2 col-form-label"
+					>Original Price:</label
+				>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="price"
+						id="bookPrice"
+						placeholder="Enter the Original Book Price"
+					/>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<label for="bookGenre" class="col-sm-2 col-form-label">Genre:</label>
+				<div class="col-sm-10">
+					<select name="genre" id="bookGenre" class="form-select">
+						<option selected>Select</option>
+						{% for genre in genres %}
+						<option value="{{ genre.id }}">{{ genre.genre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="dbookPrice" class="col-sm-2 col-form-label"
+					>Discounted Price:</label
+				>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="dPrice"
+						id="dbookPrice"
+						placeholder="Enter the Discounted Book Price"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="dbookPercent" class="col-sm-2 col-form-label"
+					>Discount Percentage:</label
+				>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="dPercent"
+						id="dbookPercent"
+						placeholder="Enter the Discount Percentage"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="booklanguage" class="col-sm-2 col-form-label"
+					>Language:</label
+				>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="language"
+						id="booklanguage"
+						placeholder="Enter the Book Language"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="bookPages" class="col-sm-2 col-form-label">Pages:</label>
+				<div class="col-sm-10">
+					<input
+						type="text"
+						class="form-control"
+						name="pages"
+						id="bookPages"
+						placeholder="Enter Total Book Pages"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="bookQuantity" class="col-sm-2 col-form-label"
+					>Quantity:</label
+				>
+				<div class="col-sm-10">
+					<input
+						type="number"
+						class="form-control"
+						name="quantity"
+						id="bookQuantity"
+						placeholder="Enter The Stock Of Book"
+					/>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="bookDescription" class="col-sm-2 form-label"
+					>Description</label
+				>
+				<div class="col-sm-10">
+					<textarea
+						name="summary"
+						class="form-control"
+						id="bookDescription"
+						rows="4"
+						placeholder="Enter Book Description"
+					></textarea>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="formFile" class="col-sm-2 col-form-label">Image:</label>
+				<div class="col-sm-10">
+					<input type="file" class="form-control" name="image" id="formFile" />
+				</div>
+			</div>
+
+			<div class="d-grid gap-2 mt-5 col-6 mx-auto">
+				<button type="submit" class="btn btn-success">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

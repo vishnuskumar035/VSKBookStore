@@ -1,0 +1,31 @@
+{% extends 'user/base1.html' %} {% load static %} {% block content %}
+<div class="container mt-5">
+	<h1 class="mb-4">Your Orders</h1>
+	{% if orders %} {% for order in orders %}
+	<div class="card mb-4">
+		<div class="card-header">
+			<h5>Order ID: {{ order.id }} - Placed on {{ order.created_at }}</h5>
+		</div>
+		<div class="card-body">
+			<ul class="list-group">
+				{% for item in order.items.all %}
+				<li
+					class="fs-3 list-group-item d-flex justify-content-between align-items-center"
+				>
+					{{ item.book.title }}
+					<span class="badge bg-success rounded-pill"
+						>₹ {{ item.price }} x {{ item.quantity }}</span
+					>
+				</li>
+				{% endfor %}
+			</ul>
+			<div class="text-end mt-3">
+				<strong>Total Price: ₹ {{ order.total_price }}</strong>
+			</div>
+		</div>
+	</div>
+	{% endfor %} {% else %}
+	<p>You have no orders.</p>
+	{% endif %}
+</div>
+{% endblock %}

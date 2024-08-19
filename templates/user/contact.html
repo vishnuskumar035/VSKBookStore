@@ -1,0 +1,68 @@
+{% extends 'user/base1.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/contact.css' %}" />
+{% endblock %} {% block content %}
+<section class="contact-section">
+	<div class="container">
+		<h2>Contact Us</h2>
+		<div class="row">
+			<div class="col-md-6 mb-4">
+				<div class="contact-info">
+					<h4>Get in Touch</h4>
+					<p>
+						<strong>Address:</strong> VSK BookStore, Attingal, Kerala, 695101
+					</p>
+					<p><strong>Phone:</strong> +91 1234 567 890</p>
+					<p><strong>Email:</strong> info@gmail.com</p>
+					<p><strong>Working Hours:</strong> Mon - Fri: 9:00 AM - 8:00 PM</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-4">
+				<form>
+					<div class="mb-3">
+						<label for="name" class="form-label">Your Name</label>
+						<input
+							type="text"
+							class="form-control"
+							id="name"
+							placeholder="Enter your name"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="email" class="form-label">Your Email</label>
+						<input
+							type="email"
+							class="form-control"
+							id="email"
+							placeholder="Enter your email"
+						/>
+					</div>
+					<div class="mb-3">
+						<label for="message" class="form-label">Your Message</label>
+						<textarea
+							class="form-control"
+							id="message"
+							rows="4"
+							placeholder="Enter your message"
+						></textarea>
+					</div>
+					<button type="submit" class="btn btn-custom">Send Message</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="row mt-5">
+			<div class="col-12">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31551.85365788362!2d76.79524864196549!3d8.69328639672258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e9f654143cbf%3A0x20d213704165f74c!2sAttingal%2C%20Kerala!5e0!3m2!1sen!2sin!4v1724007844220!5m2!1sen!2sin"
+					width="100%"
+					height="400"
+					style="border: 0"
+					allowfullscreen=""
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+				></iframe>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

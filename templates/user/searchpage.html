@@ -1,0 +1,76 @@
+{% extends 'user/base1.html' %} {% load static %} {% block content %}
+<h1 align="center" class="mt-4">Books List</h1>
+<hr />
+
+<div class="container-fluid my-5">
+	<div class="row g-4">
+		{% if books %} {% for book in books %}
+		<div class="col-lg-3 col-md-4 col-sm-6">
+			<div class="card" style="width: 20rem">
+				<img
+					src="{{ book.image.url }}"
+					style="height: 25rem"
+					class="card-img-top"
+					alt="Book Cover"
+				/>
+				<div class="card-body">
+					<h5 class="card-title">{{book.title}}</h5>
+					<p class="card-text">{{book.author}}</p>
+					<p class="price">
+						<span class="strike-price">₹{{book.price}}</span>
+						<span class="discount-price">₹ {{book.dPrice}}</span>
+					</p>
+
+					<div class="d-grid gap-2 d-md-block">
+						<a
+							href="{% url 'bookdetails' book.id %}"
+							class="btn btn-view-details"
+							><i class="bi bi-book"></i>View Details</a
+						>
+						<a href="{% url 'addtocart' book.id %}" class="btn btn-success"
+							><i class="bi bi-cart4"></i> Add to Cart</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %} {% endif %}
+	</div>
+</div>
+
+<nav aria-label="Page navigation example">
+	<ul class="pagination justify-content-center">
+		{% if page.has_previous %}
+		<li class="page-item">
+			<a
+				class="page-link"
+				href="?page={{ page.previous_page_number }}"
+				aria-label="Previous"
+			>
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+
+		{% endif %} {% for num in page.paginator.page_range %}
+
+		<li class="page-item {% if page.number == num %}activate{% endif %}">
+			<a class="page-link" href="?page={{ num }}">{{ num }}</a>
+		</li>
+
+		{% endfor %} {% if page.has_next %}
+
+		<li class="page-item">
+			<a
+				class="page-link"
+				href="?page={{ page.next_page_number }}"
+				aria-label="Next"
+			>
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+
+		{% endif %}
+	</ul>
+</nav>
+
+{% endblock %}

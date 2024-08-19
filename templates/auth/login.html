@@ -1,0 +1,46 @@
+{% extends 'user/base1.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/login.css' %}" />
+{% endblock %} {% block content %}
+<div class="container-fluid login-main">
+	<div class="card bg-secondary-subtle">
+		<div class="card-body">
+			<h3 class="card-title text-center fs-2 mb-4">Login</h3>
+			<form method="post" action="#">
+				{% csrf_token %}
+				<div class="mb-3">
+					{{ form.username }} {% if form.username.errors %}
+					<div class="text-red text-sm my-2">
+						{% for error in form.username.errors %}
+						<p>{{error}}</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+				<div class="mb-3">
+					{{ form.password }} {% if form.password.errors %}
+					<div class="text-red text-sm my-2">
+						{% for error in form.password.errors %}
+						<p>{{error}}</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+
+				<button type="submit" class="btn btn-primary w-100">Login</button>
+				{% if form.non_field_errors %}
+				<div class="text-red text-sm my-2">
+					{% for error in form.non_field_errors %}
+					<p>{{error}}</p>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</form>
+
+			<p class="text-center">
+				<a href="{% url 'register' %}">Don't have an account? Register</a>
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

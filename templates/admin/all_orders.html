@@ -1,0 +1,23 @@
+{% extends 'admin/admin1.html' %} {% load static %} {% block content %}
+<h2>All Orders</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Order ID</th>
+			<th>User</th>
+			<th>Ordered Date</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for order in orders %}
+		<tr>
+			<td>{{ order.id }}</td>
+			<td>{{ order.user.username }}</td>
+			<td>{{ order.ordered_date }}</td>
+			<td>{{ order.status }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

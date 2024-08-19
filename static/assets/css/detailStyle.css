@@ -1,0 +1,55 @@
+.book-image {
+	max-width: 100%;
+	height: auto;
+}
+.d-offer {
+	font-weight: 500;
+	font-size: 28px;
+	color: #666;
+}
+
+.author {
+	text-decoration: none;
+}
+
+.d-ori-price {
+	text-decoration: line-through;
+	color: #999;
+	font-size: 16px;
+}
+.d-greentxt {
+	font-size: 20px;
+	color: #f88632;
+	font-weight: 400;
+	padding-left: 20px;
+}
+.in-stock {
+	color: #28a745;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.wish-btn {
+	background-color: #e45278;
+	color: white;
+	border-radius: 10px;
+	width: 50%;
+}
+.cart-btn {
+	color: white;
+	border-radius: 30px;
+	width: 100%;
+}
+
+.buy-btn {
+	color: white;
+	border-radius: 30px;
+	width: 100%;
+}
+
+.dheading {
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #666;
+	font-weight: 400;
+}

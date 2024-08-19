@@ -1,0 +1,27 @@
+{% extends 'user/base1.html' %} {% load static %} {% block content %}
+
+<div class="container text-center mt-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-8">
+			<div class="card p-4 shadow-sm">
+				<div class="card-body">
+					<div class="display-4 text-success mb-4">
+						<i class="bi bi-check-circle"></i> Success!
+					</div>
+					<h5 class="card-title">Thank you for your payment!</h5>
+					<p class="card-text">
+						Your transaction was successful. We have received your payment and
+						will process your order shortly.
+					</p>
+					<a href="{% url 'list' %}" class="btn btn-primary mt-3"
+						>Go to Homepage</a
+					>
+					<a href="{% url 'order-history' %}" class="btn btn-secondary mt-3"
+						>View Your Orders</a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
